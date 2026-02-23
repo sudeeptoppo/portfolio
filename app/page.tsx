@@ -1,65 +1,71 @@
-import Image from "next/image";
-
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 export default function Home() {
+  const posts = [
+    {
+      id: 1,
+      title: "My First Post",
+      content:
+        "This is my first post on my blog. I am excited to share my thoughts and experiences with you all.",
+    },
+    {
+      id: 2,
+      title: "Another Post",
+      content: "This is another post on my blog. I hope you enjoy reading it.",
+    },
+  ]; // Replace with actual posts data
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-stone-100">
+      <div className="flex flex-col items-center justify-center content-center">
+        <h1>hi i&apos;m sudeep Toppo</h1>
+        <p className="max-w-md">
+          i am a software developer and a student at the university of delhi. i
+          am currently pursuing my btech in computer science and engineering. i
+          have a passion for coding and i love to learn new technologies. i am
+          also interested in web development and mobile app development.
+        </p>
+        <div className="flex gap-4">
+          <Button >
+            <Link href="/blogs">Read My Blogs</Link>
+          </Button>
+          <Button >
+            <Link href="/contact">Contact Me</Link>
+          </Button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+
+      <div className="max-w-3xl mx-auto">
+        <h2> About Me</h2>
+        <p>
+          I am a passionate software developer with a strong foundation in
+          computer science and engineering. My journey in programming began
+          during my undergraduate studies at the University of Delhi, where I
+          developed a deep interest in building scalable and efficient
+          applications. I specialize in full-stack development, with expertise
+          in both frontend and backend technologies.
+        </p>
+      </div>
+
+      <div className="max-w-3xl mx-auto">
+        <h2>Recent Posts</h2>
+        {posts.length > 0 ? (
+          <div>
+            {posts.map((post) => (
+              <Card key={post.id}>
+                <Link href={`/blogs/${post.id}`}>
+                  <CardContent>
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                  </CardContent>
+                </Link>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <p>No posts available.</p>
+        )}
+      </div>
+    </main>
   );
 }
